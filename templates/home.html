@@ -1,0 +1,41 @@
+{% extends "manage_layout.html" %}
+{% block content %}
+  <div class="container marginTop10">
+    <div class="row">
+      <form action="/home/" method="get">
+        <div class="input-group col-lg-4">
+          <input type="text" name="search" placeholder="Tag Number" class="form-control">
+          <span class="input-group-btn button">
+            <button class="btn btn-primary" type="submit">Find</button>
+          </span>
+        </div>
+      </form>
+      <div class="button pull-right" style=" margin: 5px;"><a class="btn btn-success" href="/equipment/add/">Add Equipment</a></div>
+    </div>
+    <div class="row" style="border-bottom: 2px solid #ECF0F1;">
+      <div class="col-md-3" style=" margin-bottom: 5px;"><strong>Tag Number</strong></div>
+      <div class="col-md-4" style=" margin-bottom: 5px;"><strong>Description</strong></div>
+      <div class="col-md-4" style=" margin-bottom: 5px;"><strong>Location</strong></div>
+      <div class="col-md-1" style=" margin-bottom: 5px;"><strong>View</strong></div>
+    </div>
+    {% for eq in equipments %}
+      <div class="row" style="border-bottom: 2px solid #ECF0F1;">
+        <div class="col-md-3" style=" margin-bottom: 5px; margin-top: 10px;">{{ eq.tag }}</div>
+        <div class="col-md-4" style=" margin-bottom: 5px; margin-top: 10px;">{{ eq.description|truncatechars:35 }}</div>
+        <div class="col-md-4" style=" margin-bottom: 5px; margin-top: 10px;">{{ eq.location|truncatechars:35 }}</div>
+        <div class="col-md-1 button" style=" margin-bottom: 5px; margin-top: 5px;"><a class="btn btn-primary" href="/equipment/{{ eq.tag }}/">View</a></div>
+      </div>
+    {% endfor %}
+  </div>
+  <br>
+  <div class="row belize-hole">
+    <div class="button">
+      {% if prev_page %}
+        <a class="col-lg-2 btn btn-primary pull-left" href="?{% if search %}search={{ search }}&{% endif %}page={{ prev_page }}">&larr; Previous</a>
+      {% endif %}
+      {% if next_page %}
+        <a class="col-lg-2 btn btn-primary pull-right" href="?{% if search %}search={{ search }}&{% endif %}page={{ next_page }}">Next &rarr;</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

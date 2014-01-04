@@ -1,0 +1,108 @@
+{% extends "manage_layout.html" %}
+{% block content %}
+  <div class="container">
+    <div class="row marginTop50">
+      <div class="col-md-12 pricing-table belize-hole bordered standout">
+        <form action="{% if edit %}/edit/part/{{ part_form.code.value }}/{% else %}/part/add/{{ eq.tag }}/{% endif %}" method="post">{% csrf_token %}
+          <ul>
+            <li class="title">
+              Add New Part
+            </li>
+            <li class="input-group col-lg-12">
+              <div class="col-md-6">
+                <label class="col-lg-5">Part Code:</label>
+                {{ part_form.code }}
+                {% if part_form.code.errors %}
+                <label class="col-lg-5">&nbsp;</label>
+                {{ part_form.code.errors }}
+                {% endif %}
+              </div>
+              <div class="col-md-6">
+                <label class="col-lg-5">Part Number:</label>
+                {{ part_form.part_number }}
+                {% if part_form.part_number.errors %}
+                <label class="col-lg-5">&nbsp;</label>
+                {{ part_form.part_number.errors }}
+                {% endif %}
+              </div>
+            </li>
+            <li class="input-group col-lg-12">
+              <div class="col-lg-6">
+                <label class="col-lg-5">Quantity:</label>
+                {{ part_form.quantity }}
+                {% if part_form.quantity.errors %}
+                <label class="col-lg-5">&nbsp;</label>
+                {{ part_form.quantity.errors }}
+                {% endif %}
+              </div>
+              <div class="col-lg-6">
+                <label class="col-lg-5">Max Level:</label>
+                {{ part_form.max_level }}
+                {% if part_form.max_level.errors %}
+                <label class="col-lg-5">&nbsp;</label>
+                {{ part_form.max_level.errors }}
+                {% endif %}
+              </div>
+            </li>
+            <li class="input-group col-lg-12">
+              <div class="col-lg-6">
+                <label class="col-lg-5">Min Level:</label>
+                {{ part_form.min_level }}
+                {% if part_form.min_level.errors %}
+                <label class="col-lg-5">&nbsp;</label>
+                {{ part_form.min_level.errors }}
+                {% endif %}
+              </div>
+              <div class="col-lg-6">
+                <label class="col-lg-5">Re-Order Point:</label>
+                {{ part_form.reorder_point }}
+                {% if part_form.reorder_point.errors %}
+                <label class="col-lg-5">&nbsp;</label>
+                {{ part_form.reorder_point.errors }}
+                {% endif %}
+              </div>
+            </li>
+            <li class="input-group col-lg-12">
+              <div class="col-lg-6">
+                <label class="col-lg-5">Price:</label>
+                {{ part_form.last_price }}
+                {% if part_form.last_price.errors %}
+                <label class="col-lg-5">&nbsp;</label>
+                {{ part_form.last_price.errors }}
+                {% endif %}
+              </div>
+              <div class="col-lg-6">
+                <label class="col-lg-5">Currency:</label>
+                <select name="currency" class="currency">
+                  <option value="">&nbsp;</option>
+                  {% for c in currency %}
+                    <option value="{{ c.id }}">{{ c.code }}</option>
+                  {% endfor %}
+                </select>
+                {{ part_form.currency.errors }}
+              </div>
+            </li>
+            <li class="">
+              <label class="col-lg-3">Description:</label>
+              {{ part_form.description }}
+              {{ part_form.description.errors }}
+            </li>
+            <li class="">
+              <label class="col-lg-3">Location:</label>
+              {{ part_form.location }}
+              {{ part_form.location.errors }}
+            </li>
+            <li class="">
+              <label class="col-lg-3">Vendor Detail:</label>
+              {{ part_form.vendor_detail }}
+              {{ part_form.vendor_detail.errors }}
+            </li>
+            <li class="button">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

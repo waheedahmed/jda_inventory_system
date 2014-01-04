@@ -1,0 +1,49 @@
+{% extends "manage_layout.html" %}
+{% block content %}
+  <div class="container marginTop50">
+    <div class="col-md-12 pricing-table belize-hole bordered standout">
+      <ul>
+        <li class="title">
+          Part History
+        </li>
+        <li class="input-group col-lg-12">
+          <div class="col-lg-5">
+            <label class="col-lg-5">Equipment Tag:</label>
+            {{ part.equipment.tag }}
+          </div>
+          <div class="col-lg-5">
+            <label class="col-lg-5">Part Number:</label>
+            {{ part.part_number }}
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="row marginTop10" style="border-bottom: 2px solid #ECF0F1;">
+      <div class="col-md-2" style=" margin-bottom: 5px;"><strong>Quantity</strong></div>
+      <div class="col-md-4" style=" margin-bottom: 5px;"><strong>Description</strong></div>
+      <div class="col-md-2" style=" margin-bottom: 5px;"><strong>Issued To</strong></div>
+      <div class="col-md-2" style=" margin-bottom: 5px;"><strong>Issued by</strong></div>
+      <div class="col-md-2" style=" margin-bottom: 5px;"><strong>Issued Date</strong></div>
+    </div>
+    {% for p_log in part_log %}
+      <div class="row" style="border-bottom: 2px solid #ECF0F1;">
+        <div class="col-md-2" style=" margin-bottom: 5px; margin-top: 10px;">{{ p_log.quantity }}</div>
+        <div class="col-md-4" style=" margin-bottom: 5px; margin-top: 10px;">{{ p_log.description|truncatechars:35 }}</div>
+        <div class="col-md-2" style=" margin-bottom: 5px; margin-top: 10px;">{{ p_log.issued_to }}</div>
+        <div class="col-md-2" style=" margin-bottom: 5px; margin-top: 10px;">{{ p_log.issued_by.username }}</div>
+        <div class="col-md-2" style=" margin-bottom: 5px; margin-top: 10px;">{{ p_log.issued_date }}</div>
+      </div>
+    {% endfor %}
+  </div>
+  <br>
+  <div class="row belize-hole">
+    <div class="button">
+      {% if prev_page %}
+        <a class="col-lg-2 btn btn-primary pull-left" href="?page={{ prev_page }}">&larr; Previous</a>
+      {% endif %}
+      {% if next_page %}
+        <a class="col-lg-2 btn btn-primary pull-right" href="?page={{ next_page }}">Next &rarr;</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

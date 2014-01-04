@@ -1,0 +1,25 @@
+{% extends "manage_layout.html" %}
+{% block content %}
+  <div class="container main-content">
+    <div class="col-md-3"></div>
+      <div class="col-md-6 pricing-table belize-hole bordered well login-form">
+        <form action="/" method="post">{% csrf_token %}
+          <ul class="alt-light">
+            <li class="title">
+              Login Form
+            </li>
+            <li class="">
+              <label class="col-lg-4">Username:</label> &nbsp;&nbsp;{{ login_form.username }}
+            </li>
+            <li class="">
+              <label class="col-lg-4">Password:</label> &nbsp;&nbsp;{{ login_form.password }}
+            </li>
+            <li class="button">
+              <button type="submit" class="btn btn-large">Login</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    <div class="col-md-3"></div>
+  </div>
+{% endblock %}

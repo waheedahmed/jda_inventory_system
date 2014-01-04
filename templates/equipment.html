@@ -1,0 +1,56 @@
+{% extends "manage_layout.html" %}
+{% block content %}
+  <div class="container">
+    <div class="row marginTop50">
+      <div class="col-md-12 pricing-table belize-hole bordered standout">
+        <ul>
+          <li class="title">
+            {{ equipment.tag }}<a class="btn btn-success pull-right" href="/part/add/{{ equipment.tag }}/">Add Part</a>
+          </li>
+          <li class="">
+            Description:
+            <pre>{{ equipment.description }}</pre>
+            Location:
+            <pre>{{ equipment.location }}</pre>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <form action="/equipment/{{ equipment.tag }}/" method="get">
+        <div class="input-group col-lg-4">
+          <input type="text" name="search" placeholder="Part Code" class="form-control">
+          <span class="input-group-btn button">
+            <button class="btn btn-primary" type="submit">Find</button>
+          </span>
+        </div>
+      </form>
+    </div>
+    <div class="row marginTop10" style="padding-left: 15px; padding-right: 15px;">
+      <div class="col-md-3" style=" margin-bottom: 5px; border-bottom: 2px solid #ECF0F1;"><strong>Code</strong></div>
+      <div class="col-md-4" style=" margin-bottom: 5px; border-bottom: 2px solid #ECF0F1;"><strong>Description</strong></div>
+      <div class="col-md-4" style=" margin-bottom: 5px; border-bottom: 2px solid #ECF0F1;"><strong>Location</strong></div>
+      <div class="col-md-1" style=" margin-bottom: 5px; border-bottom: 2px solid #ECF0F1;"><strong>View</strong></div>
+    </div>
+    {% for p in parts %}
+      <div class="row">
+        <div class="col-md-3" style=" padding-bottom: 7px; padding-top: 10px; border-bottom: 2px solid #ECF0F1;">{{ p.code }}</div>
+        <div class="col-md-4" style=" padding-bottom: 7px; padding-top: 10px; border-bottom: 2px solid #ECF0F1;">{{ p.description|truncatechars:35 }}</div>
+        <div class="col-md-4" style=" padding-bottom: 7px; padding-top: 10px; border-bottom: 2px solid #ECF0F1;">{{ p.location|truncatechars:35 }}</div>
+        <div class="col-md-1 button" style="padding-bottom: 3px; border-bottom: 2px solid #ECF0F1;"><a class="btn btn-primary" href="/part/{{ p.code }}/">View</a></div>
+      </div>
+    {% endfor %}
+  </div>
+  <br>
+  <div class="row belize-hole">
+    <div class="button">
+      {% if prev_page %}
+        <a class="col-lg-2 btn btn-primary pull-left" href="?{% if search %}search={{ search }}&{% endif %}page={{ prev_page }}">&larr; Previous</a>
+      {% endif %}
+      {% if next_page %}
+        <a class="col-lg-2 btn btn-primary pull-right" href="?{% if search %}search={{ search }}&{% endif %}page={{ next_page }}">Next &rarr;</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

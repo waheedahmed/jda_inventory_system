@@ -1,0 +1,43 @@
+{% extends "manage_layout.html" %}
+{% block content %}
+  <div class="container">
+    <div class="row marginTop50">
+      <div class="col-md-12 pricing-table belize-hole bordered standout input-group">
+        <form action="/equipment/add/" method="post">{% csrf_token %}
+          <ul>
+            <li class="title">
+              Add New Equipment
+            </li>
+            <li class="">
+              <label class="col-lg-2">Tag:</label>
+              {{ eq_form.tag }}
+              {% if eq_form.tag.errors %}
+              <label class="col-lg-2">&nbsp;</label>
+              {{ eq_form.tag.errors }}
+              {% endif %}
+            </li>
+            <li class="">
+              <label class="col-lg-2">Description:</label>
+              {{ eq_form.description }}
+              {% if eq_form.description.errors %}
+              <label class="col-lg-2">&nbsp;</label>
+              {{ eq_form.description.errors }}
+              {% endif %}
+            </li>
+            <li class="">
+              <label class="col-lg-2">Location:</label>
+              {{ eq_form.location }}
+              {% if eq_form.location.errors %}
+              <label class="col-lg-2">&nbsp;</label>
+              {{ eq_form.location.errors }}
+              {% endif %}
+            </li>
+            <li class="button">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

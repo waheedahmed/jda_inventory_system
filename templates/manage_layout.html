@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+      <title>JDA Inventory System</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!-- Bootstrap 3.0 CSS File -->
+      <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
+      <!-- Font Awesome CSS File -->
+      <link href="{{ STATIC_URL }}css/font-awesome.min.css" rel="stylesheet">
+
+      <!-- Google Webfonts -->
+      <!-- You do not need to include Arvo font CSS to use the pricing table. It used for demo purpose only -->
+      <link href="{{ STATIC_URL }}css/css_002.css" rel="stylesheet" type="text/css">
+      <link href="{{ STATIC_URL }}css/css.css" rel="stylesheet" type="text/css">
+
+
+      <link href="{{ STATIC_URL }}css/custom.css" rel="stylesheet">
+
+      <!-- Flat Pricing table -->
+      <link href="{{ STATIC_URL }}css/jda-style.css" rel="stylesheet">
+		<script src="{{ STATIC_URL }}js/jquery-2.js"></script>
+      <!-- OR
+      <link href="css/pricing-table-global.css" rel="stylesheet">
+      <link href="css/styles/your_chosen_color.css" rel="stylesheet">
+      -->
+    </head>
+	  <body>
+		<div class="container">
+			<div class="row">
+				<div class="page-header">
+					<h1 class="">
+						<a href="/">Welcome To JDA Inventory System</a>
+					</h1>
+				</div>
+			</div>
+    {% if msgs %}
+      <div class="row">
+        {% for msg in msgs %}
+          {% if success %}
+              <div class="alert-success">{{ msg }}</div>
+          {% else %}
+            <div class="alert-danger">{{ msg }}</div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+      <div class="row belize-hole marginTop10">
+        {% if user.id %}
+          <div class="pull-right">
+            Welcome {{ user.username }}{% if user.is_superuser %}|<a href="/manage-admins/" id="belize-hole" data-original-title="" title="">Manage Admins</a>{% endif %}|<a href="/logout" id="belize-hole" data-original-title="" title="">Logout</a>
+          </div>
+        {% endif %}
+      </div>
+      {% block content %} {% endblock %}
+			<div style="text-align: center; margin-bottom: 10px; margin-top: 10px;"><a href="#">Back to Top</a></div>
+      <div class="row panel-footer">
+        <footer class="text-center">Copyright &reg; 2013 - JDA-Inventory</footer>
+      </div>
+		</div>
+		<script src="{{ STATIC_URL }}js/less-1.js"></script>
+		<script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+		<script src="{{ STATIC_URL }}js/flat.js"></script>
+	
+</body>
+</html>
